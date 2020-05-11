@@ -1,0 +1,17 @@
+{
+  "name": "post-mate.dev",
+  "version": "1.0.0",
+  "description": "Safe Cross-Domain Communication",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/didiermargarido/post-mate.git"
+  },
+  "author": "Didier Margarido",
+  "license": "ISC",
+  "dependencies": {
+    "postmate": "^1.5.2"
+  }
+}
