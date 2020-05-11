@@ -16,10 +16,15 @@
     </button>
 
     <script>
-      // Expose your model to the Parent. 
       // Property values may be functions, promises, or regular values
       const handshake = new Postmate.Model({
-        height: () => document.height || document.body.offsetHeight
+        // Get body height and send to parent
+        height: () => document.height || document.body.offsetHeight,
+        // Login function from parent
+        login: (data) => {
+          document.getElementById("username").innerHTML = data.username;
+          document.getElementById("password").innerHTML = data.password;
+        }
       });
 
       // Send value to parent window
@@ -28,18 +33,6 @@
           parent.emit('update-result', 'Test Message from Iframe Domain');
         });
       }
-
-
-// // Get values from parent window
-// window.addEventListener('message', event => {
-//         for (let [key, value] of Object.entries(event.data)) {
-//           document.getElementById(key).innerHTML = value;  
-//         }
-//       });
-
-
-
-
     </script>
   </body>
 </html>
