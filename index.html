@@ -24,13 +24,13 @@
     <script>
       // Create iframe using PostMate
       const handshake = new Postmate({
-        container: document.getElementById('iframe'), // Where iframe will be injected
+        container: document.getElementById('iframe'), // Where iframe will be injected - default is body
         url: './iframe', // Url of iframe
         name: 'iframe-name', // iframe name attr
         classListArray: ["iframe-class"], // iframe classes attr
       });
 
-      // When parent <-> child handshake is complete, data may be requested from the child
+      // When handshake is complete, data may be requested from the child
       handshake.then(child => {
          // Set iframe height
         child.get('height')
@@ -41,23 +41,16 @@
         });
       });
 
-
-
-
-      // function submitForm(ev) {
-      //   // Get form values
-      //   var username = document.getElementById("username").value;
-      //   var password = document.getElementById("password").value;
-
-      //   // Send values by Post Message
-      //   var object = { username, password };
-      //   document.getElementById("iframe").contentWindow.postMessage(object, '*');
-      // }
-
-      // // Get message from iframe
-      // window.addEventListener('message', event => {
-      //   
-      // });
+      // Submit form
+      function submitForm(ev) {
+        // Call "login" function in the child model
+        handshake.then(child => {
+          child.call('login', {
+            username: document.getElementById("username").value, 
+            password: document.getElementById("password").value,
+          });
+        });
+      }
     </script>
   </body>
 </html>
