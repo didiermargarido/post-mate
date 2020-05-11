@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <title>PostMate - Iframe Domain</title>
+    <link rel="stylesheet" href="./style.css">
+    <script type="text/javascript" src="../node_modules/postmate/build/postmate.min.js"></script>
+  </head>
+  <body>
+    <h2>iFrame</h2>
+    <p>Form result from Host Domain</p>
+    <p>Username: <span id="username">-----</span></p>
+    <p>Password: <span id="password">-----</span></p>
+
+    <button type="button" onclick="sendToParent();">
+      Send "Test Message" to Host Domain
+    </button>
+
+    <script>
+      // Expose your model to the Parent. 
+      // Property values may be functions, promises, or regular values
+      const handshake = new Postmate.Model({
+        height: () => document.height || document.body.offsetHeight
+      });
+
+      // Send value to parent window
+      function sendToParent() {
+        handshake.then(parent => {
+          parent.emit('update-result', 'Test Message from Iframe Domain');
+        });
+      }
+
+
+// // Get values from parent window
+// window.addEventListener('message', event => {
+//         for (let [key, value] of Object.entries(event.data)) {
+//           document.getElementById(key).innerHTML = value;  
+//         }
+//       });
+
+
+
+
+    </script>
+  </body>
+</html>

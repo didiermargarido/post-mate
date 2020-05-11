@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <title>PostMate - Host Domain</title>
+    <link rel="stylesheet" href="./style.css">
+    <script type="text/javascript" src="./node_modules/postmate/build/postmate.min.js"></script>
+  </head>
+  <body>
+    <h1>PostMate</h1>
+    <p>Submit the form and see the result on the iframe domain.</p>
+    
+    <form> 
+      <input type="text" placeholder="Username" id="username" />
+      <input type="password" placeholder="Password" id="password" />
+      <button type="button" onClick="submitForm();">Submit</button>
+    </form>
+
+    <p>Test result from iframe domain: <span id="result"></span></p>
+
+    <hr />
+
+    <div id="iframe"></div>
+
+    <script>
+      // Create iframe using PostMate
+      const handshake = new Postmate({
+        container: document.getElementById('iframe'), // Where iframe will be injected
+        url: './iframe', // Url of iframe
+        name: 'iframe-name', // iframe name attr
+        classListArray: ["iframe-class"], // iframe classes attr
+      });
+
+      // When parent <-> child handshake is complete, data may be requested from the child
+      handshake.then(child => {
+         // Set iframe height
+        child.get('height')
+          .then(height => child.frame.style.height = `${height}px`);
+        // Listen to a particular event from the child
+        child.on('update-result', data => {
+          document.getElementById("result").innerHTML = data;
+        });
+      });
+
+
+
+
+      // function submitForm(ev) {
+      //   // Get form values
+      //   var username = document.getElementById("username").value;
+      //   var password = document.getElementById("password").value;
+
+      //   // Send values by Post Message
+      //   var object = { username, password };
+      //   document.getElementById("iframe").contentWindow.postMessage(object, '*');
+      // }
+
+      // // Get message from iframe
+      // window.addEventListener('message', event => {
+      //   
+      // });
+    </script>
+  </body>
+</html>
