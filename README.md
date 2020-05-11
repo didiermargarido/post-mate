@@ -5,5 +5,8 @@ https://didiermargarido.github.io/post-mate/
 
 ## About
 
-Postmate is a promise-based API built on postMessage.
-* Documentation: https://github.com/dollarshaveclub/postmate
+_Postmate_ is a promise-based API built on `postMessage`. It allows a parent page to speak with a child `iFrame` across origins with minimal effort.
+
+## Documentation
+
+https://github.com/dollarshaveclub/postmate
