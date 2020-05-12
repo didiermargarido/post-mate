@@ -12,7 +12,7 @@
     <form> 
       <input type="text" placeholder="Username" id="username" />
       <input type="password" placeholder="Password" id="password" />
-      <button type="button" onClick="submitForm();">Submit</button>
+      <button type="button" id="submit">Submit</button>
     </form>
 
     <p>Test result from iframe domain: <span id="result"></span></p>
@@ -41,16 +41,15 @@
         });
       });
 
-      // Submit form
-      function submitForm(ev) {
-        // Call "login" function in the child model
+      // Call "login" method in the child model
+      document.getElementById("submit").addEventListener('click', () => {
         handshake.then(child => {
           child.call('login', {
             username: document.getElementById("username").value, 
             password: document.getElementById("password").value,
           });
         });
-      }
+      });
     </script>
   </body>
 </html>
