@@ -3,7 +3,7 @@
   <head>
     <title>PostMate - Iframe Domain</title>
     <link rel="stylesheet" href="./style.css">
-    <script type="text/javascript" src="../node_modules/postmate/build/postmate.js"></script>
+    <script type="text/javascript" src="../node_modules/postmate/build/postmate.min.js"></script>
   </head>
   <body>
     <h2>iFrame</h2>
@@ -29,12 +29,12 @@
         }
       });
 
-      // Send value to parent window
-      document.getElementById("sendTest").addEventListener('click', function () {
-        handshake.then(function (parent) {
-          parent.emit('update-result', 'Test Message from Iframe Domain');
-        });
-      });
+      // // Send value to parent window
+      // document.getElementById("sendTest").addEventListener('click', function () {
+      //   handshake.then(function (parent) {
+      //     parent.emit('update-result', 'Test Message from Iframe Domain');
+      //   });
+      // });
     </script>
   </body>
 </html>
