@@ -30,12 +30,12 @@
         }
       });
 
-      // // Send value to parent window
-      // document.getElementById("sendTest").addEventListener('click', function () {
-      //   handshake.then(function (parent) {
-      //     parent.emit('update-result', 'Test Message from Iframe Domain');
-      //   });
-      // });
+      // Send value to parent window
+      document.getElementById("sendTest").addEventListener('click', function () {
+        handshake.then(function (parent) {
+          parent.emit('update-result', 'Test Message from Iframe Domain');
+        });
+      });
     </script>
   </body>
 </html>
