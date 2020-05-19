@@ -34,7 +34,7 @@
       handshake.then(function (child) {
          // Set iframe height
         child.get('height').then(function (height) {
-          child.frame.style.height = `${height}px`;
+          child.frame.style.height = height + 'px';
         });
         // Listen to a particular event from the child
         child.on('update-result', function (data) {
