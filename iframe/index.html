@@ -15,21 +15,23 @@
       Send "Test Message" to Host Domain
     </button>
 
-    <script>
+    <script type="text/javascript">
       // Property values may be functions, promises, or regular values
       const handshake = new Postmate.Model({
         // Get body height and send to parent
-        height: () => document.height || document.body.offsetHeight,
+        height: function() { 
+          return document.height || document.body.offsetHeight;
+        },
         // Login function from parent
-        login: (data) => {
+        login: function(data) { 
           document.getElementById("username").innerHTML = data.username;
           document.getElementById("password").innerHTML = data.password;
         }
       });
 
       // Send value to parent window
-      document.getElementById("sendTest").addEventListener('click', () => {
-        handshake.then(parent => {
+      document.getElementById("sendTest").addEventListener('click', function () {
+        handshake.then(function (parent) {
           parent.emit('update-result', 'Test Message from Iframe Domain');
         });
       });
